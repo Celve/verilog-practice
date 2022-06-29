@@ -16,7 +16,7 @@ module top_module();
         a <= b;
         b <= c;
         c <= a;
-    end
+    end 
 
     initial
         $monitor("a = %h, b = %h, c = %h", a, b, c);

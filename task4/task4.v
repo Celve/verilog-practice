@@ -11,6 +11,13 @@ module Add(
     output reg  [31:0]          sum
 );
 
-    // TODO
-    
+  integer i;
+  reg up = 0;
+  always @(*) begin
+    for (i = 0; i < 32; i = i + 1) begin
+      sum[i] = a[i] ^ b[i] ^ up;
+      up = (!up) ? (a[i] & b[i]) : (a[i] | b[i]);
+    end
+  end
+
 endmodule

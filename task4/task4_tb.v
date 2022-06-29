@@ -11,8 +11,8 @@ module top_module();
     wire    [31:0]      sum;
 
     initial begin
-        assign in0 = 2'b10;
-        assign in1 = 2'b01;
+        assign in0 = 4'b1000;
+        assign in1 = 4'b0011;
     end
 
     Add a(

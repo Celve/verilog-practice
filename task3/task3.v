@@ -10,7 +10,5 @@ module odd_sel(
     input           sel,
     output          check
 );
-
-    // TODO    
-
+  assign check = (^bus) ^ (!sel);
 endmodule

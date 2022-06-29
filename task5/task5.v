@@ -13,28 +13,50 @@ module seq_circuit(
     input           rst,
     output wire     Y
 );
-    reg [1:0] now_state, next_state;
-    
-    always @(posedge clk or negedge rst) begin
-        if (!rst) begin
-            now_state <= 2'b00;
-        end
-        else begin
-
-            // TODO
-            // now_state = ?
-
-        end
+  reg [1:0] now_state, next_state;
+  
+  always @(posedge clk or negedge rst) begin
+    if (!rst) begin
+      now_state <= 2'b00;
     end
-    
-    always @ (*) begin
-
-        // TODO
-        // next_state = ?
-        
+    else begin
+      now_state <= next_state;
     end
-    
-    // TODO
-    // Y = ?
+  end
+  
+  always @(*) begin
+    case (now_state) 
+      0: begin
+        if (C) begin
+          next_state = 1;
+        end else begin
+          next_state = 0;
+        end
+      end
+      1: begin
+        if (C) begin
+          next_state = 1;
+        end else begin
+          next_state = 3;
+        end
+      end
+      2: begin
+        if (C) begin
+          next_state = 2;
+        end else begin
+          next_state = 0;
+        end
+      end
+      3: begin
+        if (C) begin
+          next_state = 2;
+        end else begin
+          next_state = 3;
+        end
+      end
+    endcase
+  end
+
+  assign Y = (next_state >> 1 & 1) & (now_state >> 1 & 1);
 
 endmodule
